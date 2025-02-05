@@ -2,9 +2,9 @@
 
 using UnrealBuildTool;
 
-public class HW7 : ModuleRules
+public class PawnCharacter : ModuleRules
 {
-	public HW7(ReadOnlyTargetRules Target) : base(Target)
+	public PawnCharacter(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
