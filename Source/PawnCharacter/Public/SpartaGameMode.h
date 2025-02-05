@@ -13,5 +13,6 @@ UCLASS()
 class PAWNCHARACTER_API ASpartaGameMode : public AGameMode
 {
 	GENERATED_BODY()
-	
+public:
+	ASpartaGameMode();
 };
