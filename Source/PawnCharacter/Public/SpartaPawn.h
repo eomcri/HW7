@@ -3,11 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Camera/CameraComponent.h"
-#include "Components/CapsuleComponent.h"
 #include "GameFramework/Pawn.h"
-#include "GameFramework/SpringArmComponent.h"
 #include "SpartaPawn.generated.h"
+
+class UCapsuleComponent;
+class USkeletalMeshComponent;
+class USpringArmComponent;
+class UCameraComponent;
+struct FInputActionValue;
 
 UCLASS()
 class PAWNCHARACTER_API ASpartaPawn : public APawn
@@ -17,8 +20,6 @@ class PAWNCHARACTER_API ASpartaPawn : public APawn
 public:
 	ASpartaPawn();
 
-protected:
-	virtual void BeginPlay() override;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Character")
 	UCapsuleComponent* SceneRoot;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "SkeletalMesh")
@@ -28,9 +29,21 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
 	UCameraComponent* Camera;
 
-public:	
-
-	// Called to bind functionality to input
+protected:	
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UFUNCTION()
+	void Move(const FInputActionValue& value);
+	UFUNCTION()
+	void StartJump(const FInputActionValue& value);
+	UFUNCTION()
+	void StopJump(const FInputActionValue& value);
+	UFUNCTION()
+	void Look(const FInputActionValue& value);
+	UFUNCTION()
+	void StartSprint(const FInputActionValue& value);
+	void EndSprint(const FInputActionValue& value);
+
+	float Speed;
+	float SprintSpeedMultiplier;
 };
